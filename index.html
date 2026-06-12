@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ContactHub</title>
+    <link rel="icon" href="./assets/img/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Discover exceptional properties in prime locations. From modern condos to luxury estates, we help you find the perfect place to call home."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Days+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <link href="assets/css/all.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="header-main py-3 px-4">
+  <div class="container">
+    
+     <div class="d-flex justify-content-between align-items-center">
+ <div class="logo d-flex align-items-center gap-2">
+  <div class="logo-img">
+     <i class="far fa-address-book"></i>
+  </div>
+<div class="logo-text-wrapper d-flex flex-column">
+  <div class="logo-text ">
+Contact<span>Hub</span>
+</div>
+<div class="logo-subtext">
+  Smart Contact Manager
+ 
+</div>
+</div>
+ </div>
+ <div class="left-side d-flex align-items-center gap-3">
+<button type="button" class="btn btn-add " data-bs-toggle="modal" data-bs-target="#exampleModal" >
+  <i class="fas fa-plus"></i>
+Add Contact
+</button>
+<div class="box-icon">
+ <i class="fas fa-bell"></i>
+</div>
+<div class="box-icon">
+ <i class="fas fa-gear"></i>
+</div>
+<div class="box-avatar">
+  <img src="./assets/img/avatar/avatar-4.webp">
+</div>
+</div>
+ </div>
+    </div>
+  </div>
+  <section class="contacts-dashboard py-4">
+  <div class="container">
+
+    <!-- Stats -->
+    <div class="row g-4 mb-5">
+
+      <div class="col-lg-4">
+        <div class="stat-card">
+          <div class="stat-icon total-icon">
+            <i class="fas fa-users"></i>
+          </div>
+
+          <div>
+            <span class="stat-title">TOTAL</span>
+            <h3 id="totalContacts">0</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="stat-card">
+          <div class="stat-icon favorite-icon">
+            <i class="fas fa-star"></i>
+          </div>
+
+          <div>
+            <span class="stat-title">FAVORITES</span>
+            <h3 id="favoriteContacts">0</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="stat-card">
+          <div class="stat-icon emergency-icon">
+            <i class="fas fa-heart-pulse"></i>
+          </div>
+
+          <div>
+            <span class="stat-title">EMERGENCY</span>
+            <h3 id="emergencyContacts">0</h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <!-- Main Content -->
+      <div class="col-lg-9">
+
+        <div class="section-heading mb-4">
+          <h2>All Contacts</h2>
+          <p>Manage and organize your 0 contacts</p>
+        </div>
+
+        <!-- Search -->
+        <div class="search-wrapper mb-5">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by name, phone, or email..."
+          />
+        </div>
+
+        <!-- Contacts List -->
+        <div id="contactsContainer">
+<div class="row">
+  <div class="col-lg-6 mb-4">
+    <div class="contact-card">
+
+        <div class="contact-body">
+
+            <div class="d-flex align-items-start gap-3">
+
+                <div class="avatar-wrapper">
+                    <div class="avatar-contact">
+                        AE
+                    </div>
+
+                    <span class="favorite-badge">
+                        <i class="fas fa-star"></i>
+                    </span>
+                </div>
+
+                <div class="flex-grow-1">
+
+                    <h5 class="contact-name">
+                        Aya Eid
+                    </h5>
+
+                    <div class="contact-item">
+                        <span class="info-icon phone">
+                            <i class="fas fa-phone"></i>
+                        </span>
+
+                        <span>01099818272</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="info-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+
+                        <span>ayaeid1995@gmail.com</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="info-icon location">
+                            <i class="fas fa-location-dot"></i>
+                        </span>
+
+                        <span>Shebin El-Kom, Egypt</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="contact-tags">
+                <span class="tag school">
+                    School
+                </span>
+
+                <span class="tag emergency">
+                    Emergency
+                </span>
+            </div>
+
+        </div>
+
+        <div class="contact-footer">
+
+            <div class="left-actions">
+                <button class="action-btn call">
+                    <i class="fas fa-phone"></i>
+                </button>
+
+                <button class="action-btn mail">
+                    <i class="fas fa-envelope"></i>
+                </button>
+            </div>
+
+            <div class="right-actions">
+
+                <button class="action-btn favorite">
+                    <i class="fas fa-star"></i>
+                </button>
+
+                <button class="action-btn heart">
+                    <i class="fas fa-heart-pulse"></i>
+                </button>
+
+                <button class="action-btn edit">
+                    <i class="fas fa-pen"></i>
+                </button>
+
+                <button class="action-btn delete">
+                    <i class="fas fa-trash"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+       <!-- Empty State -->
+          <div class="empty-state col-lg-12">
+
+            <div class="empty-icon">
+              <i class="far fa-address-book"></i>
+            </div>
+
+            <h4>No contacts found</h4>
+
+            <p>
+              Click "Add Contact" to get started
+            </p>
+
+          </div> 
+</div>
+
+
+   
+
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+
+        <!-- Favorites -->
+        <div class="side-card favorite-side">
+
+          <div class="side-header">
+
+            <div class="side-icon favorite-bg">
+              <i class="fas fa-star"></i>
+            </div>
+
+            <div>
+              <h5>Favorites</h5>
+              <span>Quick access to starred contacts</span>
+            </div>
+
+          </div>
+
+          <div class="side-body">
+            No favorites yet
+          </div>
+
+        </div>
+
+        <!-- Emergency -->
+        <div class="side-card emergency-side mt-4">
+
+          <div class="side-header">
+
+            <div class="side-icon emergency-bg">
+              <i class="fas fa-heart-pulse"></i>
+            </div>
+
+            <div>
+              <h5>Emergency</h5>
+              <span>Important contacts for urgent calls</span>
+            </div>
+
+          </div>
+
+          <div class="side-body">
+            No emergency contacts
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+ 
+     
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Contact</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+ <form class="contact-form">
+
+    <!-- Avatar -->
+    <div class="text-center mb-4">
+        <div class="avatar-preview">
+            <i class="fa-solid fa-user"></i>
+        </div>
+
+        <label class="btn-photo mt-3">
+            <i class="fa-solid fa-camera"></i>
+            Change Photo
+            <input type="file" hidden id="input-photo">
+        </label>
+    </div>
+
+    <!-- Full Name -->
+    <div class="mb-3">
+        <label class="form-label fw-semibold" for="input-name">
+            Full Name <span class="text-danger">*</span>
+        </label>
+        <input type="text"
+               class="form-control custom-input"
+               placeholder="Enter full name" id="input-name">
+    </div>
+
+    <!-- Phone -->
+    <div class="mb-3">
+        <label class="form-label fw-semibold" for="input-number">
+            Phone Number <span class="text-danger">*</span>
+        </label>
+        <input type="text"
+               class="form-control custom-input" id="input-number"
+               placeholder="e.g., 01012345678">
+    </div>
+
+    <!-- Group -->
+    <div class="mb-3">
+        <label class="form-label fw-semibold" for="select-group">Group</label>
+        <select class="form-select custom-input" id="select-group">
+            <option selected>Select a group</option>
+            <option>Family</option>
+            <option>Friends</option>
+            <option>Work</option>
+        </select>
+    </div>
+
+    <!-- Notes -->
+    <div class="mb-4">
+        <label class="form-label fw-semibold" for="input-notes">Notes</label>
+        <textarea class="form-control custom-input"
+                  rows="3"
+                  placeholder="Add notes about this contact" id="input-notes"></textarea>
+    </div>
+
+    <!-- Checkboxes -->
+    <div class="d-flex gap-4 mb-4">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="favorite">
+            <label class="form-check-label" for="favorite">
+                <i class="fa-solid fa-star text-warning"></i>
+                Favorite
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="emergency">
+            <label class="form-check-label" for="emergency">
+                <i class="fa-solid fa-heart-pulse text-danger"></i>
+                Emergency
+            </label>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="row g-3">
+        <div class="col-6">
+            <button type="button" class="btn btn-cancel w-100">
+                Cancel
+            </button>
+        </div>
+
+        <div class="col-6">
+            <button onclick="addContact()" type="button" class="btn btn-save w-100" id="save-btn">
+                <i class="fa-solid fa-check"></i>
+                Save Contact
+            </button>
+        </div>
+    </div>
+
+</form>
+      </div>
+  
+    </div>
+  </div>
+</div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+     <script
+      src="./assets/js/main.js"></script>
+  </body>
+</html>
