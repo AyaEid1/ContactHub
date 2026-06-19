@@ -1,6 +1,7 @@
 // import Swal from "sweetalert2";
 // const Swal = require("sweetalert2");
 // var PhotoInput = document.getElementById("input-photo");
+var inputSearch = document.getElementById("searchInput");
 var inputName = document.getElementById("input-name");
 var inputNumber = document.getElementById("input-number");
 var inputEmail = document.getElementById("input-email");
@@ -12,24 +13,11 @@ var emergencyInput = document.getElementById("emergency");
 var saveBtn = document.getElementById("save-btn");
 var contactInfoList = [];
 
-if (localStorage.getItem("contactInfoList") == null) {
-  var emptyList = `
-            <div class="empty-state col-lg-12">
-                  <div class="empty-icon">
-                    <i class="far fa-address-book"></i>
-                  </div>
-
-                  <h4>No contacts found</h4>
-
-                  <p>Click "Add Contact" to get started</p>
-                </div>
-    `;
-  document.getElementById("contactsList").innerHTML = emptyList;
-} else {
-  contactInfoList = JSON.parse(localStorage.getItem("contactInfoList"));
+if (localStorage.getItem("containerContact")  !== null) {
+   contactInfoList = JSON.parse(localStorage.getItem("containerContact"));
   displayContact();
-}
-
+ 
+} 
 function addContact() {
   var contact = {
     // PhotoInput: "assets/images/avatar.png",
@@ -54,7 +42,7 @@ function addContact() {
     emergency: emergencyInput.checked,
   };
   contactInfoList.push(contact);
-  localStorage.setItem("contactInfoList", JSON.stringify(contactInfoList));
+  localStorage.setItem("containerContact", JSON.stringify(contactInfoList));
   displayContact();
   resetContact();
 }
@@ -70,6 +58,10 @@ function resetContact() {
   emergencyInput.checked = false;
 }
 function displayContact() {
+  if (contactInfoList.length === 0) {
+    showEmptyState();
+    return;
+  }
   var containerContact = "";
   for (var i = 0; i < contactInfoList.length; i++) {
     containerContact += `
@@ -201,23 +193,152 @@ function displayContact() {
 }
 function deleteContact(index) {
   contactInfoList.splice(index, 1);
-  localStorage.setItem("contactInfoList", JSON.stringify(contactInfoList));
+  localStorage.setItem("containerContact", JSON.stringify(contactInfoList));
+   displayContact(); 
+}
+function showEmptyState() {
+  document.getElementById("contactsList").innerHTML = `
+    <div class="empty-state col-lg-12">
+      <div class="empty-icon">
+        <i class="far fa-address-book"></i>
+      </div>
 
-   if (contactInfoList.length === 0) {
-     var emptyList = `
-            <div class="empty-state col-lg-12">
-                  <div class="empty-icon">
-                    <i class="far fa-address-book"></i>
+      <h4>No contacts found</h4>
+
+      <p>Click "Add Contact" to get started</p>
+    </div>
+  `;
+}
+function searchContact() { 
+  var searchValue = inputSearch.value.trim().toLowerCase(); 
+  var containerContact = "";
+  for (var i = 0; i < contactInfoList.length; i++) {
+     if (contactInfoList[i].nameUser.trim().toLowerCase().includes(searchValue)== true) {
+    containerContact += `
+      <div class="col-lg-6 mb-4">
+                  <div class="contact-card">
+                    <div class="contact-body">
+                      <div class="d-flex align-items-start gap-3">
+                        <div class="avatar-wrapper">
+                          <div class="avatar-contact">${contactInfoList[i].initials}</div>
+                          ${
+                            contactInfoList[i].emergency
+                              ? `<span class="heart-badge">
+   <i class="fas fa-heart-pulse"></i>
+ </span>`
+                              : ""
+                          }
+
+                          ${
+                            contactInfoList[i].favorite
+                              ? `    <span class="favorite-badge">  <i class="fas fa-star"></i>
+                          </span>`
+                              : ""
+                          }
+                         
+                        
+                        </div>
+
+                        <div class="flex-grow-1">
+                          <h5 class="contact-name">${contactInfoList[i].nameUser}</h5>
+
+                          <div class="contact-item">
+                            <span class="info-icon phone">
+                              <i class="fas fa-phone"></i>
+                            </span>
+
+                            <span>${contactInfoList[i].numberUser}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="anther-info">
+                       ${
+                         contactInfoList[i].emailUser
+                           ? ` 
+                        <div class="contact-item">
+                          <span class="info-icon email">
+                            <i class="fas fa-envelope"></i>
+                          </span> 
+                          <span>${contactInfoList[i].emailUser}</span>
+                        </div> `
+                           : ""
+                       }
+
+                       ${
+                         contactInfoList[i].locationUser
+                           ? ` <div class="contact-item">
+                           <span class="info-icon location">
+                             <i class="fas fa-location-dot"></i>
+                           </span>
+
+                           <span>${contactInfoList[i].locationUser}</span>
+                         </div>`
+                           : ""
+                       }
+                     
+                      </div>
+                      <div class="contact-tags">
+                      ${
+                        contactInfoList[i].selectGroupUser
+                          ? `<span class="tag school"> ${contactInfoList[i].selectGroupUser} </span> `
+                          : ""
+                      }
+                         
+                          ${
+                            contactInfoList[i].emergency
+                              ? `<span class="tag emergency"> <i class="fas fa-heart-pulse"></i>
+                              Emergency
+                          </span>`
+                              : ""
+                          }
+                          
+                     
+                        </div>
+                    </div>
+
+                    <div class="contact-footer">
+                      <div class="left-actions">
+                      ${
+                        contactInfoList[i].numberUser
+                          ? ` <a class="action-btn call" href="tel:${contactInfoList[i].numberUser}">
+                          <i class="fas fa-phone"></i>
+                        </a> `
+                          : ""
+                      }
+                       ${
+                         contactInfoList[i].emailUser
+                           ? ` <a class="action-btn mail" href="mailto:${contactInfoList[i].emailUser}">
+                          <i class="fas fa-envelope"></i>
+                        </a>`
+                           : ""
+                       }
+                       
+                      </div>
+
+                      <div class="right-actions">
+                        <button class="action-btn favorite">
+                          <i class="fas fa-star"></i>
+                        </button>
+
+                        <button class="action-btn heart">
+                          <i class="fas fa-heart-pulse"></i>
+                        </button>
+
+                        <button class="action-btn edit"data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
+                          <i class="fas fa-pen"></i>
+                        </button>
+
+                        <button class="action-btn delete" onclick="deleteContact(${i})">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                    </div>
                   </div>
-
-                  <h4>No contacts found</h4>
-
-                  <p>Click "Add Contact" to get started</p>
                 </div>
-    `;
-     document.getElementById("contactsList").innerHTML = emptyList;
-   } else {
-     contactInfoList = JSON.parse(localStorage.getItem("contactInfoList"));
-     displayContact();
-   }
+     
+     `;
+  }
+  document.getElementById("contactsList").innerHTML = containerContact; 
+ } 
 }
