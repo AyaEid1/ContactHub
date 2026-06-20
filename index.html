@@ -266,7 +266,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
                   >Group</label
                 >
                 <select class="form-select custom-input" id="select-group">
-                  <option selected>Select a group</option>
                   <option>Family</option>
                   <option>Friends</option>
                   <option>Work</option>
@@ -330,6 +329,15 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
                   >
                     <i class="fa-solid fa-check"></i>
                     Save Contact
+                  </button>
+                     <button
+                    onclick="saveEditContact()"
+                    type="button"
+                    class="btn btn-save w-100 d-none"
+                    id="save-changes-btn"
+                  >
+                    <i class="fa-solid fa-check"></i>
+                    Save Changes
                   </button>
                 </div>
               </div>
