@@ -78,7 +78,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
 
               <div>
                 <span class="stat-title">TOTAL</span>
-                <h3 id="totalContacts">0</h3>
+                <h3 id="totalContacts" >0</h3>
               </div>
             </div>
           </div>
@@ -148,8 +148,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
                   <span>Quick access to starred contacts</span>
                 </div>
               </div>
-
-              <div class="side-body">No favorites yet</div>
+<div class="side-body" id="favoriteList">
+  No favorites yet
+</div>
             </div>
 
             <!-- Emergency -->
@@ -164,8 +165,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
                   <span>Important contacts for urgent calls</span>
                 </div>
               </div>
-
-              <div class="side-body">No emergency contacts</div>
+<div class="side-body" id="emergencyList">
+  No emergency contacts
+</div>
             </div>
           </div>
         </div>
@@ -210,7 +212,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
 
               <!-- Full Name -->
               <div class="mb-3">
-                <label class="form-label fw-semibold" for="input-name">
+                <label class="form-label fw-semibold" for="inputName">
                   Full Name <span class="text-danger">*</span>
                 </label>
                 <input
@@ -218,34 +220,37 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
                   class="form-control custom-input"
                   placeholder="Enter full name"
                   required
-                  id="input-name"
+                  id="inputName" oninput="validation(this,'contactNameError')"
                 />
+                <p id="contactNameError" class="alert alert-danger d-none">Name should contain only letters and spaces (2-50 characters)</p>
               </div>
 
               <!-- Phone -->
               <div class="mb-3">
-                <label class="form-label fw-semibold" for="input-number">
+                <label class="form-label fw-semibold" for="inputNumber">
                   Phone Number <span class="text-danger">*</span>
                 </label>
                 <input
                   type="text"
                   class="form-control custom-input"
-                  id="input-number"
-                  placeholder="e.g., 01012345678"
+                  id="inputNumber"
+                  placeholder="e.g., 01012345678" oninput="validation(this,'contactPhoneError')"
                   required
                 />
+                <p id="contactPhoneError" class="alert alert-danger d-none">Please enter a valid Egyptian phone number</p>
               </div>
               <!-- email -->
               <div class="mb-3">
-                <label class="form-label fw-semibold" for="input-email">
+                <label class="form-label fw-semibold" for="inputEmail">
                   Email Address
                 </label>
                 <input
                   type="email"
                   class="form-control custom-input"
-                  id="input-email"
+                  id="inputEmail" oninput="validation(this,'contactEmailError')"
                   placeholder="Enter email"
                 />
+                <p id="contactEmailError" class="alert alert-danger d-none">Please enter a valid email address</p>
               </div>
               <!-- adress -->
               <div class="mb-3">
@@ -280,7 +285,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
                 <textarea
                   class="form-control custom-input"
                   rows="3"
-                  placeholder="Add notes about this contact"
+                  placeholder="Add notes about this contact"  
                   id="input-notes"
                 ></textarea>
               </div>
@@ -300,7 +305,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
                 </div>
 
                 <div class="form-check">
-                  <input
+                  <input 
                     class="form-check-input"
                     type="checkbox"
                     id="emergency"
@@ -315,13 +320,13 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
               <!-- Buttons -->
               <div class="row g-3">
                 <div class="col-6">
-                  <button type="button" class="btn btn-cancel w-100">
+                  <button type="button" class="btn btn-cancel w-100"  data-bs-dismiss="modal">
                     Cancel
                   </button>
                 </div>
 
                 <div class="col-6">
-                  <button
+                  <button 
                     onclick="addContact()"
                     type="button"
                     class="btn btn-save w-100"
@@ -330,7 +335,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.25/dist/sweetalert2.min.css
                     <i class="fa-solid fa-check"></i>
                     Save Contact
                   </button>
-                     <button
+                     <button 
                     onclick="saveEditContact()"
                     type="button"
                     class="btn btn-save w-100 d-none"
